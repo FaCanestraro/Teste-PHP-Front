@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    position: relative;
+    display: flex;
+    margin: 5px;
+    justify-content: space-evenly;
 `;
 
 export const BackgroundLeftColor = styled.div`

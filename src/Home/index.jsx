@@ -1,12 +1,7 @@
 import React, {memo, useState } from 'react';
 
 import { 
-    Button, 
-    Form, 
-    Modal, 
-    Header,
-    Message, 
-    Input} from 'semantic-ui-react';
+    Button} from 'semantic-ui-react';
 
 import { 
   Container,
@@ -18,11 +13,12 @@ import axios from '../services/Axios';
 
 function Home() {
   
+
+
   return (
       <Container>
-        <a href="/empresa"><button>Cadastrar Empresa</button></a>
-        <p/>
-        <a href="/cliente"><button>Cadastrar Cliente</button></a>
+        <a href="/empresa"><Button>Cadastrar Empresa</Button></a>
+        <a href="/cliente"><Button>Cadastrar Cliente</Button></a>
       </Container>
   );
 

@@ -2,25 +2,23 @@ import React, {memo, useState } from 'react';
 
 import { 
     Button, 
-    Form, 
-    Modal, 
-    Header,
-    Message, 
-    Input} from 'semantic-ui-react';
+    Form} from 'semantic-ui-react';
 
 import { 
   Container,
-  Space
+  Space,
+  Positive,
+  Negative
 } from './styles';
 
 import axios from '../services/Axios';
 
 
-function Empresa() {
+const Empresa = () => {
 
     const [uf, setUf] = useState('');
     const [razaoSocial, setRazaoSocial] = useState('');
-    const [cnpj, setCnpj] = useState(null);
+    const [cnpj, setCnpj] = useState('');
     const [mensagem, setMensagem] = useState({
         descricao: '',
         color: '',
@@ -31,13 +29,6 @@ function Empresa() {
     
         event.preventDefault();
         try {
-          if (uf == null || razaoSocial == null || cnpj == null) {
-                setMensagem({
-                  descricao: 'Preencha todos os campos',
-                  color: 'red',
-                  status: true
-              });
-          } else {
             let formData = new FormData();
             formData.append("uf", uf);
             formData.append("razaoSocial", razaoSocial);
@@ -49,14 +40,13 @@ function Empresa() {
               }
             });
             const json = await response.data;
-    
+            window.alert("Empresa Cadastrada com Sucesso!!");
             setUf('');
             setRazaoSocial('');
-            setCnpj(null);
+            setCnpj('');
             setMensagem({
               status: false
             });
-          }
         } catch (err) {
           //setError(err.response.data.error);
         }
@@ -66,12 +56,14 @@ function Empresa() {
   
   return (
       <Container>
+        <Space>
         <Form onSubmit={handleCreateEmpresa}>
             
             <Form.Group widths='equal'>
               <Form.Input 
                 required
                 label='UF da Empresa' 
+                value={uf}
                 placeholder='UF da Empresa'
                 onChange={({target}) => setUf(target.value)}
               />
@@ -80,6 +72,7 @@ function Empresa() {
               <Form.Input 
                 required
                 label='Razão Social' 
+                value={razaoSocial}
                 placeholder='Razão Social'
                 onChange={({target}) => setRazaoSocial(target.value)}
               />
@@ -89,16 +82,24 @@ function Empresa() {
                 required
                 label='CNPJ' 
                 placeholder='CNPJ'
+                type='number'
+                value={cnpj}
                 onChange={({target}) => setCnpj(target.value)}
               />
             </Form.Group>  
-              <Button type="submit" positive>
-                Salvar
-              </Button>
+            <Positive type="submit">
+              Cadastrar
+            </Positive>
           </Form>
+          <a href="/">
+            <Negative>
+              Cancelar
+            </Negative>
+          </a>
+          </Space>
       </Container>
   );
 
 }
 
-export default Empresa;
+export default memo(Empresa);
