@@ -19,11 +19,6 @@ const Empresa = () => {
     const [uf, setUf] = useState('');
     const [razaoSocial, setRazaoSocial] = useState('');
     const [cnpj, setCnpj] = useState('');
-    const [mensagem, setMensagem] = useState({
-        descricao: '',
-        color: '',
-        status: false
-      });
 
     const handleCreateEmpresa = async (event) => {
     
@@ -44,9 +39,6 @@ const Empresa = () => {
             setUf('');
             setRazaoSocial('');
             setCnpj('');
-            setMensagem({
-              status: false
-            });
         } catch (err) {
           //setError(err.response.data.error);
         }
@@ -56,48 +48,45 @@ const Empresa = () => {
   
   return (
       <Container>
-        <Space>
-        <Form onSubmit={handleCreateEmpresa}>
-            
-            <Form.Group widths='equal'>
-              <Form.Input 
-                required
-                label='UF da Empresa' 
-                value={uf}
-                placeholder='UF da Empresa'
-                onChange={({target}) => setUf(target.value)}
-              />
-            </Form.Group>
-            <Form.Group widths='equal'>
-              <Form.Input 
-                required
-                label='Razão Social' 
-                value={razaoSocial}
-                placeholder='Razão Social'
-                onChange={({target}) => setRazaoSocial(target.value)}
-              />
-            </Form.Group>
-            <Form.Group widths='equal'>
-              <Form.Input 
-                required
-                label='CNPJ' 
-                placeholder='CNPJ'
-                type='number'
-                value={cnpj}
-                onChange={({target}) => setCnpj(target.value)}
-              />
-            </Form.Group>  
-            <Positive type="submit">
-              Cadastrar
-            </Positive>
-          </Form>
-          <a href="/">
-            <Negative>
-              Cancelar
-            </Negative>
-          </a>
-          </Space>
-      </Container>
+      <Form onSubmit={handleCreateEmpresa}>
+      <Space>
+        <Form.Group widths='equal'>
+            <Form.Input 
+            required
+            label='UF da Empresa' 
+            value={uf}
+            placeholder='UF da Empresa'
+            onChange={({target}) => setUf(target.value)}
+          />
+        </Form.Group>
+        <Form.Group widths='equal'>
+          <Form.Input 
+            required
+            label='Razão Social' 
+            value={razaoSocial}
+            placeholder='Razão Social'
+            onChange={({target}) => setRazaoSocial(target.value)}
+          />
+        </Form.Group>
+        <Form.Group widths='equal'>
+          <Form.Input 
+            required
+            label='CNPJ' 
+            placeholder='CNPJ'
+            type='number'
+            value={cnpj}
+            onChange={({target}) => setCnpj(target.value)}
+          />
+        </Form.Group> 
+        <Button positive type="submit">
+          Cadastrar
+        </Button>
+        <Button negative href="/">
+          Cancelar
+        </Button>
+        </Space>
+      </Form>
+    </Container>
   );
 
 }
